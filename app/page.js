@@ -125,11 +125,14 @@ export default function Home() {
   return (
     <main className="wrap" lang={lang}>
       <header className="top">
-        <div className="brand">Plan B <span>Navigator</span></div>
-        <div className="langs">
-          {[["en", "EN"], ["te", "తెలుగు"], ["hi", "हिंदी"]].map(([k, l]) => (
-            <button key={k} className={lang === k ? "on" : ""} onClick={() => switchLang(k)}>{l}</button>
-          ))}
+        <div className="brand"><span className="mark">PB</span><div>Plan B Navigator<small>A growth prototype for NIAT</small></div></div>
+        <div className="right">
+          <div className="langs">
+            {[["en", "EN"], ["te", "తెలుగు"], ["hi", "हिंदी"]].map(([k, l]) => (
+              <button key={k} className={lang === k ? "on" : ""} onClick={() => switchLang(k)}>{l}</button>
+            ))}
+          </div>
+          <a className="hbtn" href={`https://www.niatindia.com/?utm_source=planb&utm_medium=${ctx.current.source}`} target="_blank" rel="noreferrer" onClick={() => track("cta_click", { from: "header" })}>{t.cta}</a>
         </div>
       </header>
 
@@ -137,7 +140,7 @@ export default function Home() {
         <>
           <section className="hero">
             <div className="kicker">{t.kicker}</div>
-            <h1>{variant === "planb" ? t.titleB : t.title}</h1>
+            <h1>{accent(variant === "planb" ? t.titleB : t.title)}</h1>
             <p className="sub">{t.sub}</p>
           </section>
 
@@ -264,6 +267,12 @@ export default function Home() {
       <footer>Built for the NxtWave Growth Hack Challenge · Data: NTA, JoSAA, TGCHE, NIRF 2025 · Not an official NIAT page.</footer>
     </main>
   );
+}
+
+function accent(s) {
+  const i = s.indexOf("Plan B");
+  if (i < 0) return s;
+  return <>{s.slice(0, i)}<em>Plan B</em>{s.slice(i + 6)}</>;
 }
 
 function Report({ text }) {
