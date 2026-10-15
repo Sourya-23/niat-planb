@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { T } from "@/lib/i18n";
-import { FUNNEL, funnelShare, COLLEGES } from "@/lib/data";
+import { FUNNEL, funnelShare, COLLEGES, COMPARISON } from "@/lib/data";
 
 const fmtIN = (n) => Number(n).toLocaleString("en-IN");
 
@@ -239,6 +239,25 @@ export default function Home() {
                 <p className="note">{res.data.niat.honest_caveat}</p>
               </div>
             </div>
+          </div>
+
+          <div className="card cmp" style={{ marginTop: 24 }}>
+            <h2 style={{ fontSize: 20 }}>{t.cmpTitle}</h2>
+            <div className="scroll">
+              <table>
+                <thead><tr><th></th><th>{t.colTypical}</th><th className="niatcol">NIAT</th></tr></thead>
+                <tbody>
+                  {COMPARISON.map((r) => (
+                    <tr key={r.label}>
+                      <td><b>{r.label}</b></td>
+                      <td className={r.edge === "other" ? "win" : ""}>{r.other}</td>
+                      <td className={`niatcol ${r.edge === "niat" ? "win" : ""}`}>{r.niat}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="note">{t.cmpNote}</p>
           </div>
 
           <div className="card chat" style={{ marginTop: 24 }}>

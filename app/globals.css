@@ -122,3 +122,8 @@ footer { color: var(--muted); font-size: 13px; padding: 30px 0 40px; border-top:
 .tag.cold { background: #e4e8ee; color: #3d4c5a; }
 .scroll { overflow-x: auto; }
 @media (max-width: 760px) { .kpis { grid-template-columns: repeat(2, 1fr); } .frow { grid-template-columns: 100px 1fr 54px; } }
+.cmp td, .cmp th { width: 40%; }
+.cmp td:first-child, .cmp th:first-child { width: 20%; }
+.cmp th.niatcol { color: var(--maroon); }
+.cmp td.niatcol { background: #fcf6f6; }
+.cmp td.win { background: var(--maroon-soft); color: var(--maroon); font-weight: 600; }
